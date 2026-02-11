@@ -48,12 +48,12 @@ public int solve(int n, int[] arr, int x) {
 
 1. **메모리 사용**
    - x가 최대 2,000,000이면 배열 크기 8MB
-   - boolean 배열로 바꾸면 1/32 절약 가능
+   - 투 포인터 방식으로 바꾸면 O(1) 공간 사용 가능
 
-2. **x/2일 때 처리**
-   - x가 짝수이고 x/2가 수열에 있으면?
-   - 현재 코드는 `(x+1)/2`까지만 순회해서 x/2 케이스 제외됨
-   - ⚠️ 이 경우 별도 처리 필요할 수 있음
+2. **x/2일 때 처리 (별도 처리 불필요)**
+   - 문제 조건: **"서로 다른"** 양의 정수
+   - 따라서 같은 값이 두 번 나올 수 없음 → (x/2, x/2) 쌍은 원래 불가능
+   - 현재 코드가 정확함!
 
 ---
 
@@ -90,44 +90,50 @@ public int solve(int n, int[] arr, int x) {
 
 ---
 
-## 🏆 대표 풀이 2: boolean 배열
+## 🏆 대표 풀이 2: boolean 배열 + 순차 체크 (BaaaaaaaaaaarkingDog)
 
 ```java
 public int solve(int n, int[] arr, int x) {
-    boolean[] exist = new boolean[x + 1];
-    int count = 0;
-    
-    for (int i = 0; i < n; i++) {
-        if (arr[i] <= x) {
-            exist[arr[i]] = true;
-        }
-    }
+    // x-arr[i]가 최대 x까지 가능하므로 배열 크기를 x+1로 설정
+    boolean[] occur = new boolean[x + 1];
+    int ans = 0;
     
     for (int i = 0; i < n; i++) {
         int target = x - arr[i];
-        if (target > 0 && target < arr[i] && target <= x && exist[target]) {
-            count++;
+        // target이 유효 범위이고, 이전에 나온 적 있으면 쌍 발견
+        if (target > 0 && target <= x && occur[target]) {
+            ans++;
+        }
+        // 현재 값이 유효 범위면 존재 표시
+        if (arr[i] <= x) {
+            occur[arr[i]] = true;
         }
     }
-    return count;
+    return ans;
 }
 ```
 
+### 핵심 아이디어
+- **순차적으로 처리**: 현재 값을 체크하기 **전에** x-arr[i]가 이미 존재하는지 확인
+- **자연스러운 중복 방지**: i < j 조건을 순회 순서로 자동 만족
+- 먼저 체크하고, 그 다음 현재 값을 occur에 표시
+
 ### 특징
 - 시간 복잡도 **O(n)**
-- 공간 복잡도 **O(x)** (boolean이라 메모리 절약)
-- `target < arr[i]` 조건으로 중복 방지
+- 공간 복잡도 **O(x)**
+- 한 번의 순회로 해결 (내 코드는 두 번 순회)
 
 ---
 
 ## 📊 비교
 
-| 항목 | 내 코드 | 투 포인터 | boolean 배열 |
-|------|---------|-----------|--------------|
-| 시간 복잡도 | O(n + x) | O(n log n) | O(n) |
-| 공간 복잡도 | O(x) int[] | O(1) | O(x) boolean[] |
-| 메모리 | 8MB (x=2M) | 거의 없음 | 2MB (x=2M) |
-| 구현 난이도 | ⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
+| 항목 | 내 코드 (카운팅) | 투 포인터 |
+|------|-----------------|-----------|
+| 시간 복잡도 | O(n + x) | O(n log n) |
+| 공간 복잡도 | O(x) | O(1) |
+| 메모리 | 8MB (x=2M) | 거의 없음 |
+| 중복 수 처리 | ✅ 가능 | ✅ 가능 |
+| 구현 난이도 | ⭐⭐ | ⭐⭐⭐ |
 
 ---
 

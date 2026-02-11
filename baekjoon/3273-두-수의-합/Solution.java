@@ -20,14 +20,13 @@ public class Solution {
      * @return ai + aj = x를 만족하는 (ai, aj) 쌍의 수 (i < j)
      */
     public int solve(int n, int[] arr, int x) {
-        int[] count = new int[x];
+        boolean[] occur = new boolean[x]; // 겹치는 수가 없으므로 boolean 배열 사용
         int result = 0;
 
         for (int i = 0; i < n; i++) {
-            if (arr[i] < x) count[arr[i]]++;
-        }
-        for (int i = 1; i < (x + 1) / 2; i++) {
-            result += count[i] * count[x - i];
+            if (arr[i] >= x) continue ;
+            if (occur[x - arr[i]]) result++;
+            occur[arr[i]] = true;
         }
         return result;
     }
