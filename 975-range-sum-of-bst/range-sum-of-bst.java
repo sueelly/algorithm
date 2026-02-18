@@ -15,11 +15,18 @@
  */
 class Solution {
     public int rangeSumBST(TreeNode root, int low, int high) {
-        return dfs(root, low, high);
-    }
+        List<TreeNode> nodes = new ArrayList<>();
+        TreeNode curr;
+        int sum = 0;
 
-    int dfs(TreeNode root, int low, int high) {
-        if (root == null) return 0;
-        return (root.val >= low && root.val <= high ? root.val : 0) + dfs(root.left, low, high) + dfs(root.right, low, high);
+        nodes.add(root);
+        while (!nodes.isEmpty()) {
+            curr = nodes.get(0);
+            nodes.remove(0);
+            if (curr.left != null) nodes.add(curr.left);
+            if (curr.right != null) nodes.add(curr.right);
+            if (curr.val >= low && curr.val <= high) sum += curr.val;
+        }
+        return sum;
     }
 }
