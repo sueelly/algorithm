@@ -14,19 +14,10 @@
  * }
  */
 class Solution {
-    public int rangeSumBST(TreeNode root, int low, int high) {
-        List<TreeNode> nodes = new ArrayList<>();
-        TreeNode curr;
-        int sum = 0;
-
-        nodes.add(root);
-        while (!nodes.isEmpty()) {
-            curr = nodes.get(0);
-            nodes.remove(0);
-            if (curr.left != null) nodes.add(curr.left);
-            if (curr.right != null) nodes.add(curr.right);
-            if (curr.val >= low && curr.val <= high) sum += curr.val;
-        }
-        return sum;
+    public int rangeSumBST(TreeNode root, int low, int high) {        
+        if (root == null) return 0;
+        if (root.val < low) return rangeSumBST(root.right, low, high);
+        if (root.val >= low && root.val <= high) return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
+        return rangeSumBST(root.left, low, high);
     }
 }
