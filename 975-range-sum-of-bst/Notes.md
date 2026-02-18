@@ -1,1 +1,1 @@
-<h2>range-sum-of-bst Notes</h2><hr>[ Time taken: 2 m 11 s ]
+<h2>range-sum-of-bst Notes</h2><hr>[ Time taken: 8 m 18 s ]
