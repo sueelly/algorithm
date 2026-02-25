@@ -1,0 +1,20 @@
+{
+  "problem": {
+    "number": 6550,
+    "title": "부분 문자열",
+    "link": "https://www.acmicpc.net/problem/6550"
+  },
+  "solution": {
+    "method": "solve",
+    "inputType": "String s, String t (한 줄에 두 문자열)",
+    "outputType": "String \"Yes\" or \"No\""
+  },
+  "testCases": [
+    {
+      "id": 1,
+      "description": "예제 1 전체",
+      "input": "sequence subsequence\nperson compression\nVERDI vivaVittorioEmanueleReDiItalia\ncaseDoesMatter CaseDoesMatter",
+      "expected": "Yes\nNo\nYes\nNo"
+    }
+  ]
+}
