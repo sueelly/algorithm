@@ -1,0 +1,32 @@
+{
+  "problem": {
+    "number": 1463,
+    "title": "1로 만들기",
+    "link": "https://www.acmicpc.net/problem/1463"
+  },
+  "solution": {
+    "method": "solve",
+    "inputType": "int n",
+    "outputType": "int"
+  },
+  "testCases": [
+    {
+      "id": 1,
+      "description": "예제 1: 2 → 1 (1회)",
+      "input": "2",
+      "expected": "1"
+    },
+    {
+      "id": 2,
+      "description": "예제 2: 10 → 9 → 3 → 1 (3회)",
+      "input": "10",
+      "expected": "3"
+    },
+    {
+      "id": 3,
+      "description": "N=1: 이미 1이므로 0회",
+      "input": "1",
+      "expected": "0"
+    }
+  ]
+}
