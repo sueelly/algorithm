@@ -1,31 +1,39 @@
 class Solution {
-    public int maxFreq(String s, int maxLetters, int minSize, int maxSize) {
-        // s.length() - minSize + 1개의 substring 생성
-        int len = s.length(), letters;
-        String substr;
-        boolean[] alpha = new boolean[26];
-        Map<String, Integer> count = new HashMap<>();
+    private String s;
+    private int maxLetters;
+    private boolean[] alphabets = new boolean[26];
 
-        for (int i = 0; i < len - minSize + 1; i++) {
-            substr = s.substring(i, i + minSize);
-            for (int j = 0; j < minSize; j++) {
-                alpha[substr.charAt(j) - 'a'] = true;
-            }
-            letters = 0;
-            for (int j = 0; j < 26; j++) {
-                if (alpha[j]) letters++;
-            }
-            if (letters <= maxLetters) {
-                if (!count.containsKey(substr)) count.put(substr, 1);
-                else count.put(substr, count.get(substr) + 1);
-            }
-            
-            Arrays.fill(alpha, false);
+    private boolean isValidSubstring(int start, int end) {
+        int unique = 0;
+        char c;
+
+        Arrays.fill(alphabets, false);
+
+        for (int i = start; i < end && unique <= maxLetters; i++) {
+            c = s.charAt(i);
+            if (alphabets[c - 'a']) continue ;
+            alphabets[c - 'a'] = true;
+            unique += 1;
         }
-        int max = 0;
-        for (Integer n : count.values()) {
-            if (n > max) max = n;
+        return unique <= maxLetters;
+    }
+
+    public int maxFreq(String s, int maxLetters, int minSize, int maxSize) {
+        this.s = s;
+        this.maxLetters = maxLetters;
+        Map<String, Integer> substrings = new HashMap<>();
+        String substring;
+        int maxCount = 0;
+
+        for (int i = 0; i <= s.length() - minSize; i++) {
+            if (isValidSubstring(i, i + minSize)) {
+                substring = s.substring(i, i + minSize);
+                substrings.put(substring, substrings.getOrDefault(substring, 0) + 1);
+            }
         }
-        return max;
+        for (int count: substrings.values()) {
+            if (maxCount < count) maxCount = count;
+        }
+        return maxCount;
     }
 }
