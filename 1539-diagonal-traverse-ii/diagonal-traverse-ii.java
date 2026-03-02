@@ -14,9 +14,10 @@ class Solution {
         }
         while (--i >= 0) {
             j = 0;
+            List<Integer> row = nums.get(i);
             while (++j < nums.get(i).size()) {
                 if (diags.size() <= i + j) diags.add(new ArrayList<Integer>());
-                diags.get(i + j).add(nums.get(i).get(j));
+                diags.get(i + j).add(row.get(j));
                 len++;
             }
         }
