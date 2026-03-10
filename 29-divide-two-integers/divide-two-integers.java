@@ -16,7 +16,7 @@ class Solution {
             }
             dividend = -dividend;
         }
-        // if (divisor == 1) return isPositive ? dividend : -dividend;
+        if (divisor == 1) return isPositive ? dividend : -dividend;
         if (dividend < divisor) return q;
         if (dividend == divisor) return q + (isPositive ? 1 : -1);
 
