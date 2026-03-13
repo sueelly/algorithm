@@ -1,0 +1,50 @@
+{
+  "problem": {
+    "number": 1074,
+    "title": "Z",
+    "link": "https://www.acmicpc.net/problem/1074"
+  },
+  "solution": {
+    "method": "solve",
+    "inputType": "int n, int r, int c",
+    "outputType": "int"
+  },
+  "testCases": [
+    {
+      "id": 1,
+      "description": "예제 1: N=2, (3,1) → 11",
+      "input": "2 3 1",
+      "expected": "11"
+    },
+    {
+      "id": 2,
+      "description": "예제 2: N=3, (7,7) → 63",
+      "input": "3 7 7",
+      "expected": "63"
+    },
+    {
+      "id": 3,
+      "description": "N=1, (0,0) → 0",
+      "input": "1 0 0",
+      "expected": "0"
+    },
+    {
+      "id": 4,
+      "description": "N=4, (7,7) → 63",
+      "input": "4 7 7",
+      "expected": "63"
+    },
+    {
+      "id": 5,
+      "description": "N=10, (511,511) → 262143",
+      "input": "10 511 511",
+      "expected": "262143"
+    },
+    {
+      "id": 6,
+      "description": "N=10, (512,512) → 786432",
+      "input": "10 512 512",
+      "expected": "786432"
+    }
+  ]
+}
