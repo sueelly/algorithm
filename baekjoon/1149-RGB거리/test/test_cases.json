@@ -1,0 +1,32 @@
+{
+  "problem": {
+    "number": 1149,
+    "title": "RGB거리",
+    "link": "https://www.acmicpc.net/problem/1149"
+  },
+  "solution": {
+    "method": "solve",
+    "inputType": "int n, int[][] costs",
+    "outputType": "int"
+  },
+  "testCases": [
+    {
+      "id": 1,
+      "description": "예제 1: 빨-파-빨 = 26+57+13 = 96",
+      "input": "3\n26 40 83\n49 60 57\n13 89 99",
+      "expected": "96"
+    },
+    {
+      "id": 2,
+      "description": "N=2: 두 집만 있는 경우",
+      "input": "2\n1 100 100\n100 1 100",
+      "expected": "2"
+    },
+    {
+      "id": 3,
+      "description": "N=2: 같은 색이 최소이지만 인접 제약",
+      "input": "2\n1 100 100\n1 100 100",
+      "expected": "101"
+    }
+  ]
+}
