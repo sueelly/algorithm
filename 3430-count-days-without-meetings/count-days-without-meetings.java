@@ -7,10 +7,7 @@ class Solution {
             return m1[0] - m2[0]; 
         });
         for (int i = 0; i < n; i++) {
-            while (last < meetings[i][0]) {
-                count++;
-                last++;
-            }
+            count += Math.max(meetings[i][0] - last, 0);
             last = Math.max(last, meetings[i][1] + 1);
         }
         while (last++ <= days) count++;
