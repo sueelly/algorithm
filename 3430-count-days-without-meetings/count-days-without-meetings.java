@@ -8,8 +8,9 @@ class Solution {
         });
         for (int i = 0; i < n; i++) {
             if (i < n - 1 && meetings[i][0] == meetings[i + 1][0]) continue ;
+            if (meetings[i][1] < last) continue ;
             count += Math.max(meetings[i][0] - last, 0);
-            last = Math.max(last, meetings[i][1] + 1);
+            last = meetings[i][1] + 1;
         }
         count += days - last + 1;
         return count;
