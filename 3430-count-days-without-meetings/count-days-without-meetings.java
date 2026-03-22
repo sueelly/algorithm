@@ -11,7 +11,7 @@ class Solution {
             count += Math.max(meetings[i][0] - last, 0);
             last = Math.max(last, meetings[i][1] + 1);
         }
-        while (last++ <= days) count++;
+        count += days - last + 1;
         return count;
     }
 }
