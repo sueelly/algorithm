@@ -9,6 +9,7 @@ class Solution {
         int sum = 0;
         
         for (int i = 0; i < n; i++) sum += nums[i];
+        if (target < 0) target = -target;
         if ((sum - target) % 2 != 0) return 0;
         this.target = (sum - target) / 2;
 
